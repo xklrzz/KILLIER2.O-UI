@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://vss.pandauth.com/kv/8bacbecbdf57cb59"))()
 textLabel("xklrzz UI")
-switch("10x Auto Tongue ", function()
+switch("Auto Tongue ", function()
   task.spawn(function()
 
   On = true

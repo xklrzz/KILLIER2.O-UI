@@ -1,6 +1,6 @@
 loadstring(game:HttpGet("https://vss.pandauth.com/kv/8bacbecbdf57cb59"))()
-textLabel("xklrzz UI")
-switch("Auto Tongue ", function()
+add_label("xklrzz UI")
+add_switch("Auto Tongue ", function()
   task.spawn(function()
 
   On = true
@@ -22,7 +22,7 @@ end, function()
   On = false
 end)
 
-switch("2x Auto Win", function()
+add_switch("2x Auto Win", function()
   WON = true
   while WON do 
     local root = game.Players.LocalPlayer.Character.HumanoidRootPart
@@ -33,7 +33,7 @@ end, function()
   WON = false
 end)
 
-switch("Auto Rebirth", function()
+add_switch("Auto Rebirth", function()
   ar = true  
   local Event = game:GetService("ReplicatedStorage").Events.RequestRebirth
   while ar do
@@ -43,7 +43,17 @@ switch("Auto Rebirth", function()
 end, function()
   ar = false
 end)
-textLabel("About")
-buttons("Discord",function()
+add_button("Remove Invisible Part", function()
+ local invispart = workspace.Map.Borders
+ for _ , part in pairs(invispart:GetChildren()) do
+  part.Transparency = 0.5
+  part.Color = Color3.new(1,0,0)
+  task.wait(1)
+  part:Destroy()
+  print(part.Name)
+ end
+end)
+add_label("Support")
+add_button("Discord",function()
   setclipboard("https://discord.gg/24YJFmSdgE")
 end)

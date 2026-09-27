@@ -46,12 +46,12 @@ end)
 add_button("Remove Invisible Part", function()
  local invispart = workspace.Map.Borders
  for _ , part in pairs(invispart:GetChildren()) do
-  part.Transparency = 0.5
+  part.Transparency = 0.7
   part.Color = Color3.new(1,0,0)
-  task.wait(1)
+  task.wait(0.5)
   part:Destroy()
-  print(part.Name)
  end
+ invispart:Destroy()
 end)
 add_label("Support")
 add_button("Discord",function()

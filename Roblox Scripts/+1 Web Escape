@@ -1,0 +1,47 @@
+-- Loading Screen
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xklrzz/KILLIER2.O-UI/refs/heads/main/Loading%20UI"))()
+-- UI
+loadstring(game:HttpGet("https://vss.pandauth.com/kv/8bacbecbdf57cb59"))()
+stoploading()
+add_label("KILLER2.O UI")
+
+-- Auto Web
+local autoWeb = false
+add_switch("Auto Webs ", function()
+		autoWeb = true
+		while autoWeb do
+				local Event = game:GetService("ReplicatedStorage").Events.WebGrind
+				Event:FireServer()
+				task.wait(0.01)
+		end
+end, function() autoWeb = false end
+				)
+
+-- Auto Win 
+local autoWin = false
+local player = game.Players.LocalPlayer
+add_switch("Auto Farm Win ", function() 
+		autoWin = true
+		while autoWin do
+				local root = player.Character:FindFirstChild("HumanoidRootPart")
+				if root then
+						root.CFrame = CFrame.new(-14261, 30, math.random(436, 445))
+				end
+				wait(0.01)
+		end
+		end, function()
+				autoWin = false
+		end)
+		
+-- Auto Rebirth
+local autoRebirth
+add_switch("Auto Rebirth ", function()
+		autoRebirth = true
+		while autoRebirth do
+				local Event = game:GetService("ReplicatedStorage").Events.RebirthRequest
+				Event:InvokeServer()
+				task.wait(2)
+		end end, function() autoRebirth = false end)
+
+add_label("Support")
+add_button("Discord", function() setclipboard("https://discord.gg/NpufDhevun") end)

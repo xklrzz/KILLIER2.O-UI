@@ -33,7 +33,9 @@ local loading = false
 TWS:Create(TL, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut,-1,true), {TextColor3 = Color3.new(1,1,1)}):Play()
 
 TWS:Create(line, TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, false, 0.5 ), {BackgroundTransparency = 1, Size = UDim2.new(0,50, 0,2), Position = UDim2.new(0.9, 0, 0.9,0)}):Play()
-
+function stoploading()
+		loaded = true
+end
 spawn(function()
 		while true do
 				if not loaded and not loading then

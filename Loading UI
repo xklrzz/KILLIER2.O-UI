@@ -42,9 +42,10 @@ spawn(function()
 						TWS:Create(f, TweenInfo.new(0.5), {Position = UDim2.new(0.5,0,0.1,0)}):Play()
 				elseif loaded and loading then
 						TWS:Create(f, TweenInfo.new(0.5), {Position = UDim2.new(0.5, 0,-0.1,0)}):Play()
-						break
+					
 						wait(0.5)
 						B_G:Destroy()
+break
 				
 				end
 				

@@ -28,7 +28,7 @@ line.Position = UDim2.new(0.05,0,0.9,0)
 line.Size = UDim2.new(0,0,0,2)
 line.BorderSizePixel = 0
 line.BackgroundColor3 = Color3.new(0,0,0)
-local loaded = false -- true = end
+local loaded = false
 local loading = false
 TWS:Create(TL, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut,-1,true), {TextColor3 = Color3.new(1,1,1)}):Play()
 
@@ -36,18 +36,17 @@ TWS:Create(line, TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirectio
 
 spawn(function()
 		while true do
-				wait(1)
 				if not loaded and not loading then
 						loading = true
 						TWS:Create(f, TweenInfo.new(0.5), {Position = UDim2.new(0.5,0,0.1,0)}):Play()
 				elseif loaded and loading then
-						TWS:Create(f, TweenInfo.new(0.5), {Position = UDim2.new(0.5, 0,-0.1,0)}):Play()
-					
-						wait(0.5)
+						TWS:Create(f, TweenInfo.new(1), {Position = UDim2.new(0.5, 0,-0.1,0)}):Play()
+						
+						wait(1)
 						B_G:Destroy()
-break
+				 break
 				
 				end
-				
+		 wait(1)
 		end
 end)

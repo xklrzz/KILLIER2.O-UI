@@ -1,3 +1,8 @@
+
+
+
+
+
 loadstring(game:HttpGet("https://vss.pandauth.com/kv/8bacbecbdf57cb59"))()
 add_label("Build a Boat")
 local disable = false
@@ -99,8 +104,8 @@ end, function()
 		snd.Size -= Vector3.new(0,6,0)
 walk = false
 end)
-add_textbox("Set Water Height", "1~20", snd.Size.Y, function()
-error(" Wrong")
+add_textbox("Set Water Height", "1~20", snd.Size.Y, function(value)
+snd.Size = Vector3.new(snd.Size.X, value, snd.Size.Z)
 end)
 
 local noVelocity = false
@@ -126,11 +131,14 @@ local speed = add_textbox("Walk Speed", "Speed",game.Players.LocalPlayer.Charact
 end)
 local playerr = game.Players.LocalPlayer.Character
 local jump = playerr:WaitForChild("Humanoid").JumpHeight
-playerr.Humanoid.JumpHeight = 90
-local jumpheight = add_textbox("Jump Height ", " Value", playerr:WaitForChild("Humanoid").JumpHeight, function(value) 
+local jumpheight = add_textbox("Jump Power ", " Value", playerr:WaitForChild("Humanoid").JumpHeight, function(value) 
+playerr:WaitForChild("Humanoid").UseJumpPower = false
 playerr:WaitForChild("Humanoid").JumpHeight = value
 jump = value
 end)
 game.Players.LocalPlayer.CharacterAdded:Connect(function()
-		game.Players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = speed.Text
+local humanoid =  game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+		humanoid.WalkSpeed = speed.Text
+      humanoid.JumpHeight = jump
+      humanoid.UseJumpPower = false
 end)

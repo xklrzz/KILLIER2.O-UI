@@ -1,4 +1,5 @@
 
+pcall(function() loadstring(game:HttpGet("https://scriptblox.com/ingest/clientv2.lua"))("proj_334570f7c8b4", "1.0.0", false) end)
 
 -- Loading Screen
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xklrzz/KILLIER2.O-UI/refs/heads/main/Loading%20UI"))()

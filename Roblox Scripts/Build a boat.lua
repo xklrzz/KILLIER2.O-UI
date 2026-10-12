@@ -1,9 +1,11 @@
 
 
-
+-- Loading Screen
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xklrzz/KILLIER2.O-UI/refs/heads/main/Loading%20UI"))()
 
 
 loadstring(game:HttpGet("https://vss.pandauth.com/kv/8bacbecbdf57cb59"))()
+stoploading()
 add_label("Build a Boat")
 local disable = false
 add_switch("Auto Farm", function()

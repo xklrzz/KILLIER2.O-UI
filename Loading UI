@@ -1,5 +1,27 @@
 local TWS = game:GetService("TweenService")
 local B_G = Instance.new("ScreenGui")
+local introSound = Instance.new("Sound")
+introSound.Volume = 0.6
+if getcustomasset then
+		local soundAsset
+		local isFileExists = getcustomasset("KILLER2.O/LOADING_SOUND.mp3")
+		if isFileExists then
+				soundAsset = isFileExists
+		else
+				local isDownloaded, content = pcall(function() return game:HttpGet("https://files.catbox.moe/dibvly.mp3") end)
+				if isDownloaded then
+						writefile("KILLER2.O/LOADING_SOUND.mp3", content)
+						soundAsset = getcustomasset("KILLER2.O/LOADING_SOUND.mp3")
+						print("Audio Downloaded")
+				else
+						print("Faild To Download")
+				end
+		end
+		pcall(function()
+introSound.SoundId = soundAsset end)
+end
+introSound.Parent = game:GetService("SoundService")
+introSound:Play()
 B_G.IgnoreGuiInset = true
 B_G.Parent = game.CoreGui --game.Players.LocalPlayer.PlayerGui
 local f = Instance.new("Frame")
@@ -30,7 +52,7 @@ line.BorderSizePixel = 0
 line.BackgroundColor3 = Color3.new(0,0,0)
 local loaded = false
 local loading = false
-TWS:Create(TL, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut,-1,true), {TextColor3 = Color3.new(1,1,1)}):Play()
+TWS:Create(f, TweenInfo.new(5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut,-1,true), {BackgroundColor3 = Color3.new(0,0,0)}):Play()
 
 TWS:Create(line, TweenInfo.new(1.5, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, false, 0.5 ), {BackgroundTransparency = 1, Size = UDim2.new(0,50, 0,2), Position = UDim2.new(0.9, 0, 0.9,0)}):Play()
 function stoploading()

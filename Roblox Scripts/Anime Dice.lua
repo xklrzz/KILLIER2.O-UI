@@ -1,4 +1,10 @@
+-- Loading Screen
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xklrzz/KILLIER2.O-UI/refs/heads/main/Loading%20UI"))()
+
+pcall(function() loadstring(game:HttpGet("https://scriptblox.com/ingest/clientv2.lua"))("proj_8f097fe9d054", "1.0.0", false) end)
+
 loadstring(game:HttpGet("https://vss.pandauth.com/kv/8bacbecbdf57cb59"))()
+stoploading()
 local cash = game:GetService("ReplicatedStorage").Network.PlotService.RE.CollectBalance
 local levelUp = game:GetService("ReplicatedStorage").Network.PlotService.RE.LevelUpSlot
 local Roll = game:GetService("ReplicatedStorage").Network.RollService.RF.RollDice

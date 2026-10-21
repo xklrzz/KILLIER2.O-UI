@@ -23,7 +23,7 @@ add_switch("Auto Farm", function()
             if base then
                 base:Destroy()
             end
-            
+
             local darkPart = "CaveStage" .. i + 1
             local part = stage:FindFirstChild(darkPart)
             if part then
@@ -32,14 +32,14 @@ add_switch("Auto Farm", function()
                     local root = player.Character:WaitForChild("HumanoidRootPart") 
                     root.Parent:FindFirstChild("Humanoid").WalkSpeed = 0
                     root.CFrame = darkness.CFrame
-                    
+
                     base = Instance.new("Part")
                     base.Parent = workspace
                     base.Anchored = true
                     base.Position = root.Position - Vector3.new(0, 10, 0)
                     base.Transparency = 1 
                     base.Size = Vector3.new(10, 2, 10)
-                    
+
                     local Event = workspace.ClaimRiverResultsGold
                     Event:FireServer()
                     task.wait(2)
@@ -68,7 +68,7 @@ add_switch("Auto Farm", function()
             startFarm()        
         end                
     end)
-    
+
     startFarm()
 end, function()
     disable = true
@@ -94,7 +94,7 @@ add_switch("Walk on Water", function()
     water.CanTouch = false
     snd.Transparency = 1
     snd.Size += Vector3.new(0, 6, 0)
-    
+
     local player = game.Players.LocalPlayer
     local root = player.Character.HumanoidRootPart
     local b = workspace.Sand
@@ -104,11 +104,11 @@ add_switch("Walk on Water", function()
             snd.Position = sandpos
             break
         end
-        
+
         local chr = player.Character
         root = chr:FindFirstChild("HumanoidRootPart")
         task.wait(0.2)
-        
+
         if root then
             if root.Position.Z >= endPos.Z then
                 b.CanCollide = false
@@ -178,9 +178,9 @@ local function quest(questID)
     task.wait(2)
     Event:FireServer(q)
     task.wait(3)
-    
+
     local root = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
-    
+
     if q == 1 then
         task.wait(2)
         local oldPos = root.CFrame
@@ -207,11 +207,11 @@ local function quest(questID)
         end
     elseif q == 9 then
         local oldPos = root.CFrame
-																						root.CFrame = CFrame.new(-93, 57, 1379)
-																						task.wait(0.5)
-																						root.CFrame = workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger.CFrame
-																						task.wait(0.5)
-																						root.CFrame = oldPos
+                                                                                                                                                                                root.CFrame = CFrame.new(-93, 57, 1379)
+                                                                                                                                                                                task.wait(0.5)
+                                                                                                                                                                                root.CFrame = workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger.CFrame
+                                                                                                                                                                                task.wait(0.5)
+                                                                                                                                                                                root.CFrame = oldPos
     end
 end
 
@@ -221,7 +221,18 @@ add_button("Target Quest", function() quest(2) end)
 add_button("Ramp Quest", function() quest(3) end)
 add_button("Find Me Quest", function() quest(4) end)
 add_button("Thin Ice Quest", function() quest(9) end)
-
+-- Buy Items
+local qty = {}
+local function buyItems(item)
+    local Event = workspace.ItemBoughtFromShop
+												Event:InvokeServer(
+												    item,
+												    qty[item]
+												)
+end
+add_label("Buy Items")
+add_textbox("Enter Qnty of PineTree","Quantity", 1,function(value) qty.PineTree = value end)
+add_button("Buy PineTree 80 GOLD EACH", function() buyItems("PineTree") end)
 -- Local Player Modifiers
 add_label("Local Player")
 local player = game.Players.LocalPlayer
@@ -237,11 +248,11 @@ local jumpheight = add_textbox("Jump Power ", " Value", playerr:WaitForChild("Hu
     jump = value
 end)
 local infJump = false
-add_switch("Inf Jump", function()	 infJump = true
+add_switch("Inf Jump", function()         infJump = true
 end, function() infJump = false end)
 game:GetService("UserInputService").JumpRequest:connect(function()
-											if infJump then
-												game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+                                                                                        if infJump then
+                                                                                                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
 end
 end)
 local afk

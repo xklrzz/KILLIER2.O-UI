@@ -158,7 +158,33 @@ for _, team in pairs(teams) do
         playerTeam = team.Name
     end
 end
-
+-- Events
+add_label("Event")
+local eventdata = {}
+add_switch("Tick or Treat Candy" ,function()
+    eventdata.TickTreat = true
+local eventPath = workspace.Houses
+local player = game.Players.LocalPlayer
+while eventdata.TickTreat do
+for _, part in pairs(eventPath:GetChildren()) do
+local chr = player.Character or player.CharacterAdded:Wait()
+print(part.Name)
+for i = 0, 10 do
+pcall(function()
+local root = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+root.CFrame = part.Carpet:GetChildren()[7].CFrame + Vector3.new(0,0,math.random(0,6))
+end)
+wait(0.2)
+end
+task.wait(5)
+end
+local hum = player.Character:FindFirstChild("Humanoid")
+if hum then
+hum.Health = 0
+end
+wait(1)
+end
+end, function() eventdata.TickTreat = false end)
 local dict = {
     black = "BlackZone",
     blue = "Really blueZone",

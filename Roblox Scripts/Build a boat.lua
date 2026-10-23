@@ -150,9 +150,10 @@ end)
 -- Quest Setup
 local teams = game.Teams:GetChildren()
 local playerTeam
-
+local teamData = {}
 for _, team in pairs(teams) do
     print(team.Name, team.TeamLeader.Value)
+teamData[team.TeamLeader.Value] = team.Name
     if team.TeamLeader.Value == game.Players.LocalPlayer.Character.Name then
         print("found", team.Name)
         playerTeam = team.Name
@@ -251,10 +252,10 @@ add_button("Thin Ice Quest", function() quest(9) end)
 local qty = {}
 local function buyItems(item)
     local Event = workspace.ItemBoughtFromShop
-												Event:InvokeServer(
-												    item,
-												    qty[item]
-												)
+                                                                                                Event:InvokeServer(
+                                                                                                    item,
+                                                                                                    qty[item]
+                                                                                                )
 end
 add_label("Buy Items")
 add_textbox("Enter Qnty of PineTree","Quantity", 1,function(value) qty.PineTree = value end)
@@ -313,6 +314,35 @@ end
 end
 add_button("Set Way Point", function() waypoint("set") end)
 add_button("Teleport Way Point", function() waypoint("goto") end)
+add_label("Players")
+local playername = nil
+local players = game.Players:GetChildren()
+add_textbox("Player Name", "Player", "", function(value) playername = string.lower(value) end)
+function findplayer(playerName)
+local fp
+    for _, plr in pairs(players) do
+        if plr.Name == game.Players.LocalPlayer.Name then continue end
+        local displayName = string.lower(plr.DisplayName)
+        local foundPlayer = string.sub(displayName, 1, #playerName) == playerName or string.sub(string.lower(plr.Name), 1, #playerName) == playerName
+        if foundPlayer then
+            fp = plr
+            break
+        end
+end
+print(fp)
+return fp
+end
+add_button("Teleport to Player", function() 
+    local plr = findplayer(playername)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame
+end)
+add_button("Remove Player Base Lock", function() 
+    local plr = findplayer(playername)
+   local teamcolor = teamData[plr.Name]
+print(dict[teamcolor])
+    workspace:FindFirstChild(dict[teamData[plr.Name]]).Lock:Destroy()
+end)
+
 add_label("Support")
 add_button("Dicord", function() setclipboard("https://discord.gg/24YJFmSdgE") end)
 add_label("Keylss • KILLER2.O")

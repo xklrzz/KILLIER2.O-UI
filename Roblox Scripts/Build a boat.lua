@@ -332,6 +332,7 @@ end
 print(fp)
 return fp
 end
+local plrData = {}
 add_button("Teleport to Player", function() 
     local plr = findplayer(playername)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame
@@ -342,6 +343,21 @@ add_button("Remove Player Base Lock", function()
 print(dict[teamcolor])
     workspace:FindFirstChild(dict[teamData[plr.Name]]).Lock:Destroy()
 end)
+add_switch("Loop Teleport To Player",function() 
+    local plr = findplayer(playername)
+    plrData.LoopTP = true
+    while plrData.LoopTP do
+        wait(0.05)
+pcall(function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame + Vector3.new(0,0,03)
+end)
+    end
+end, function() plrData.LoopTP = false end )
+local camera = game.workspace.Camera
+add_switch("Spectate Player",function() 
+    local plr = findplayer(playername)
+    camera.CameraSubject = plr.Character:WaitForChild("Humanoid")
+end,function() camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid end)
 
 add_label("Support")
 add_button("Dicord", function() setclipboard("https://discord.gg/24YJFmSdgE") end)

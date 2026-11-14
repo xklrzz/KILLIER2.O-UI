@@ -1,0 +1,50 @@
+-- Loading Screen
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xklrzz/KILLIER2.O-UI/refs/heads/main/Loading%20UI"))()
+
+-- UI
+loadstring(game:HttpGet("https://vss.pandauth.com/kv/8bacbecbdf57cb59"))()
+stoploading()
+add_label("KILLER2.O UI")
+local data = {}
+local function autofarm(trigger)
+while data[trigger] do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(22, 6, -32)
+local Event = game:GetService("ReplicatedStorage").Remotes.Plot_EquipBest
+Event:InvokeServer()
+wait(0.5)
+local Event = game:GetService("ReplicatedStorage").Remotes.Throw_Start
+Event:InvokeServer()
+wait(0.5)
+local Event = game:GetService("ReplicatedStorage").Remotes.Throw_MeterStarted
+Event:FireServer()
+wait(0.5)
+local Event = game:GetService("ReplicatedStorage").Remotes.Throw_Resolve
+Event:InvokeServer(
+    .9997373332
+)
+wait(1)
+local Event = game:GetService("ReplicatedStorage").Remotes.Throw_Revealed
+Event:FireServer()
+wait(1)
+local Event = game:GetService("ReplicatedStorage").Remotes.Throw_Complete
+Event:InvokeServer()
+wait(2)
+end
+end
+add_switch("Auto Farm Beta",function() data.farm = true autofarm("farm") end, function()
+		data.farm = false end)
+local afk
+add_switch("Anti AFK", function() 
+    local VirtualUser = game:GetService("VirtualUser")
+    local LocalPlayer = game:GetService("Players").LocalPlayer
+
+    afk = LocalPlayer.Idled:Connect(function()
+        VirtualUser:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        task.wait(1)
+        VirtualUser:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+    end)
+    print("Anti-AFK Script Executed successfully!")
+end, function()
+    if afk then afk:Disconnect() end
+end)
+add_label("More Features Coming")

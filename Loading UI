@@ -1,5 +1,6 @@
 local TWS = game:GetService("TweenService")
 local B_G = Instance.new("ScreenGui")
+--[[
 local introSound = Instance.new("Sound")
 introSound.Volume = 0.6
 if getcustomasset then
@@ -21,7 +22,7 @@ if getcustomasset then
 introSound.SoundId = soundAsset end)
 end
 introSound.Parent = game:GetService("SoundService")
-introSound:Play()
+introSound:Play()]]
 B_G.IgnoreGuiInset = true
 B_G.Parent = game.CoreGui --game.Players.LocalPlayer.PlayerGui
 local f = Instance.new("Frame")

